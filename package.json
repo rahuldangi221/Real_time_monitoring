@@ -1,0 +1,6 @@
+{
+    "whatsapp": { "pid": 1423, "memory": "150 MB", "status": "Sleeping" },
+    "vscode": { "pid": 2345, "memory": "480 MB", "status": "Running" },
+    "chrome": { "pid": 1987, "memory": "300 MB", "status": "Running" },
+    "file manager": { "pid": 1927, "memory": "563 MB", "status": "Running" }
+  }

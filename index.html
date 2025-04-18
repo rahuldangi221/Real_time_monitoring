@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✅ SEO Optimized -->
+  <title>RealTrackX | System Dashboard Monitoring Tool</title>
+  <meta name="description" content="RealTrackX offers real-time system metrics like CPU, memory, and network usage with a live monitoring dashboard." />
+  <meta name="keywords" content="RealTrackX, system monitoring, CPU usage, live dashboard, process insights, performance monitoring" />
+  <meta name="author" content="Vasu Rastogi" />
+  <link rel="canonical" href="https://rastogiassociates.com" />
+
+  <!-- ✅ Social Preview -->
+  <meta property="og:title" content="RealTrackX | System Dashboard Monitoring Tool" />
+  <meta property="og:description" content="Track CPU, memory, and running processes in real-time with RealTrackX." />
+  <meta property="og:url" content="https://rastogiassociates.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://rastogiassociates.com/images/preview.png" />
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- ✅ Fonts & Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- ✅ Charts Library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="app-header" role="banner">
+    <h1>RealTrackX</h1>
+    <p class="tagline">Live Process Insights, Reimagined</p>
+  </header>
+<!-- Add inside <body> after header or where appropriate -->
+  <section class="top-bar">
+    <div class="clock" aria-label="Real-Time Clock">
+      <strong>Current Time:</strong> <span id="clock">--:--:--</span>
+    </div>
+    <div class="fake-alert" role="alert" aria-live="assertive">
+      <p>⚠️ High CPU Usage Detected on Process ID 1032</p>
+    </div>
+  </section>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Main navigation">
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#monitoring">Live Monitoring</a></li>
+        <li><a href="#metrics">Performance</a></li>
+        <li><a href="#alerts">Alerts</a></li>
+        <li><a href="#logs">Logs</a></li>
+        <li><a href="#preferences">Preferences</a></li>
+      </ul>
+    </nav>
+
+    <main class="dashboard" role="main">
+      <section id="metrics" aria-labelledby="system-metrics">
+        <h2 id="system-metrics">System Metrics</h2>
+        <p>Real-time usage overview</p>
+        <div class="metrics">
+          <article class="card" aria-label="CPU usage">
+            <h3>CPU</h3>
+            <p id="cpu">--%</p>
+          </article>
+          <article class="card" aria-label="Memory usage">
+            <h3>Memory</h3>
+            <p id="memory">--%</p>
+          </article>
+          <article class="card" aria-label="Network usage">
+            <h3>Network</h3>
+            <p id="network">-- kbps</p>
+          </article>
+        </div>
+      </section>
+      <!-- Add this Performance Summary Card inside main.dashboard, preferably after system metrics -->
+<section class="summary" aria-labelledby="summary-title">
+  <h2 id="summary-title">Performance Summary</h2>
+  <div class="summary-cards">
+    <article class="summary-card">
+      <h3>Avg CPU</h3>
+      <p id="avgCpu">--%</p>
+    </article>
+    <article class="summary-card">
+      <h3>Avg Memory</h3>
+      <p id="avgMemory">--%</p>
+    </article>
+    <article class="summary-card">
+      <h3>Top Process</h3>
+      <p id="topProcess">N/A</p>
+    </article>
+  </div>
+</section>
+
+      <section class="charts" aria-label="Performance Charts">
+        <div class="chart">
+          <h4>CPU Load Over Time</h4>
+          <canvas id="realtimeChart" aria-label="CPU chart"></canvas>
+        </div>
+        <div class="chart">
+          <h4>Memory Consumption</h4>
+          <canvas id="memoryChart" aria-label="Memory chart"></canvas>
+        </div>
+      </section>
+
+      <section class="processes" aria-labelledby="process-list">
+        <h2 id="process-list">Running Processes</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">PID</th>
+                <th scope="col">Name</th>
+                <th scope="col">CPU%</th>
+                <th scope="col">Mem%</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="process-table-body">
+              <!-- Populated via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="search-section" aria-labelledby="search-title">
+        <h3 id="search-title">Search Process</h3>
+        <form onsubmit="event.preventDefault(); fetchProcessDetails();">
+          <div class="search-box">
+            <label for="processInput" class="visually-hidden">Search Process</label>
+            <input type="text" id="processInput" placeholder="e.g. chrome.exe" required />
+            <button type="submit">Search</button>
+          </div>
+        </form>
+        <div class="result" aria-live="polite">
+          <p><strong>PID:</strong> <span id="pid">N/A</span></p>
+          <p><strong>Memory:</strong> <span id="memoryUsage">N/A</span></p>
+          <p><strong>Status:</strong> <span id="status">N/A</span></p>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+<!-- Add this before closing </body> -->
+<footer class="site-footer" role="contentinfo">
+  <p>&copy; 2025 RealTrackX. Built with ❤️ by Vasu Rastogi.</p>
+</footer>
+
+<!-- Add this inside <script src="script.js" defer></script> or a new script block -->
+<script>
+  // Real-time Clock
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent =
+      now.toLocaleTimeString();
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Example Performance Summary Values (you can tie this to real data)
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("avgCpu").textContent = "34%";
+    document.getElementById("avgMemory").textContent = "58%";
+    document.getElementById("topProcess").textContent = "chrome.exe";
+  });
+</script>
+</body>
+</html>
